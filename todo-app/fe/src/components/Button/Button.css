@@ -1,0 +1,7 @@
+.custom-btn {
+  padding      : 4px 12px;
+  border-radius: 3px;
+  border       : unset;
+  margin       : 2px 4px;
+  font-size    : 20px;
+}

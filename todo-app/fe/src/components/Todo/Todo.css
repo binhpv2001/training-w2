@@ -1,0 +1,20 @@
+.todo {
+  align-items    : center;
+  background     : #fff;
+  border-radius  : 3px;
+  box-shadow     : 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display        : flex;
+  font-size      : 20px;
+  justify-content: space-between;
+  margin-top     : 6px;
+  padding        : 4px 8px;
+}
+
+.group-btn {
+  display: flex;
+}
+
+.complete {
+  text-decoration: line-through;
+  color          : #9a9a9a;
+}

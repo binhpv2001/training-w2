@@ -1,0 +1,21 @@
+{
+  "name": "be",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@koa/cors": "^5.0.0",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-router": "^10.0.0",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.0"
+  }
+}

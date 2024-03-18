@@ -1,0 +1,19 @@
+.todo-form {
+  max-width: 500px;
+  display  : flex;
+}
+
+.input-todo-form {
+  flex-grow    : 1;
+  width        : max-content;
+  padding      : 12px 0;
+  border-radius: 3px;
+  border       : unset;
+  outline      : unset;
+  text-indent  : 24px;
+  font-size    : 20px;
+}
+
+.add-btn {
+  background-color: lightseagreen;
+}
