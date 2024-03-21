@@ -1,4 +1,4 @@
-import { AppProvider } from '@shopify/polaris';
+import {AppProvider, Frame} from '@shopify/polaris';
 import Topbar from '../Topbar/Topbar';
 import PageApp from '../PageApp/PageApp';
 const App = () => {
@@ -6,8 +6,10 @@ const App = () => {
 
   return (
     <AppProvider>
-      <Topbar />
-      <PageApp />
+      <Frame>
+        <Topbar />
+        <PageApp />
+      </Frame>
     </AppProvider>
   );
 };

@@ -1,14 +1,19 @@
-import { useState } from "react";
+import {useState} from "react";
 import './TodoForm.css'
 import Button from "../Button/Button";
 
-const TodoForm = ( { addTodo } ) => {
-  const [ value, setValue ] = useState( "" );
+const TodoForm = ({addTodo}) => {
+  const [value, setValue] = useState("");
+
+  const handleValue = (str) => {
+    if (str && str.trim() !== '') {
+      return str.replace(/\s+/g, ' ');
+    }
+  }
 
   const handleSubmit = () => {
-    if ( !value ) return;
-    addTodo( value );
-    setValue( "" );
+    addTodo(handleValue(value));
+    setValue("");
   };
 
   return (
@@ -16,10 +21,10 @@ const TodoForm = ( { addTodo } ) => {
       <input
         type="text"
         className="input-todo-form"
-        value={ value }
-        onChange={ e => setValue( e.target.value ) }
+        value={value}
+        onChange={e => setValue(e.target.value)}
       />
-      <Button className='add-btn' text='Add' onClick={ handleSubmit } />
+      <Button className='add-btn' text='Add' onClick={handleSubmit} />
     </div>
   );
 }

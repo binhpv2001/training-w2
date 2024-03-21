@@ -1,17 +1,15 @@
-const yup = require( 'yup' );
+const yup = require('yup');
 
-const createTodoDto = async ( ctx, next ) => {
+const createTodoDto = async (ctx, next) => {
   try {
     const postData = ctx.request.body;
-    let schema = yup.object().shape( {
-      userId: yup.string().required(),
+    let schema = yup.object().shape({
       title: yup.string().required(),
-      completed: yup.boolean().required()
-    } );
+    });
 
-    await schema.validate( postData );
+    await schema.validate(postData);
     next();
-  } catch ( e ) {
+  } catch (e) {
     ctx.status = 400;
     ctx.body = {
       success: false,
@@ -22,4 +20,4 @@ const createTodoDto = async ( ctx, next ) => {
 
 }
 
-module.exports = { createTodoDto };
+module.exports = {createTodoDto};

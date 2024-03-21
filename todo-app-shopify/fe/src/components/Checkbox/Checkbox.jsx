@@ -1,18 +1,17 @@
-import { Checkbox } from '@shopify/polaris';
-import { useState, useCallback } from 'react';
+import {Checkbox} from '@shopify/polaris';
+import {useState, useCallback} from 'react';
 
 const CheckboxCustom = () => {
-  const [ checked, setChecked ] = useState( false );
+  const [checked, setChecked] = useState(false);
   const handleChange = useCallback(
-    ( newChecked ) => setChecked( newChecked ),
+    (newChecked) => setChecked(newChecked),
     [],
   );
 
   return (
     <Checkbox
-      // label="Custom checkbox"
-      checked={ checked }
-      onChange={ handleChange }
+      checked={checked}
+      onChange={handleChange}
     />
   );
 }

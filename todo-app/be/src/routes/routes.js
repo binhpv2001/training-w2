@@ -1,6 +1,6 @@
 const Router = require( 'koa-router' );
 const todoInputMiddleware = require( '../middleware/todoInputMiddleware' );
-const todoHandler = require( '../handles/todos/todoHandlers' );
+const todoHandler = require( '../handlers/todos/todoHandlers' );
 
 // Prefix all routes with /books
 const router = new Router( { prefix: '/api' } );

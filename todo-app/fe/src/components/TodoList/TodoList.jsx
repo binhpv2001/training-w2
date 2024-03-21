@@ -1,67 +1,72 @@
-import { useEffect, useState } from "react";
-import { createNewTodo, deleteTodo, getATodo, updateCurrentTodo } from "../../services/todoServies";
+import {useEffect, useState} from "react";
+import {createNewTodo, deleteTodo, getATodo, updateCurrentTodo} from "../../services/todoServies";
 import Todo from "../Todo/Todo";
 import TodoForm from "../TodoForm/TodoForm";
-import createUUID from "../../config/createUUID";
 import './TodoList.css'
 
 const TodoList = () => {
   const limit = 6;
-  const [ todos, setTodos ] = useState( [] );
-  const [ fetching, setFetching ] = useState( false );
-  const addTodo = async ( title ) => {
-    let newTodo = {
-      id: createUUID(),
-      title,
-      userId: createUUID(),
-      completed: false
-    }
-
-    const res = await createNewTodo( newTodo );
-    if ( res && res.success === true ) {
-      // setFetching( true );
+  const [todos, setTodos] = useState([]);
+  const addTodo = async (title) => {
+    if (title) {
+      const res = await createNewTodo({title});
+      if (res?.success === true) {
+        setTodos([...todos, res.data])
+      }
     }
   };
 
-  const completeTodo = todo => {
-    const { id } = todo;
-    updateCurrentTodo( id, { completed: true } );
+  const completeTodo = async (todo) => {
+    const {id} = todo;
+    const res = await updateCurrentTodo(id, {isCompleted: true});
+    if (res?.success === true) {
+      setTodos((prev) =>
+        prev.map((todo) => {
+          if (todo.id === res.data) {
+            return {...todo, isCompleted: true};
+          }
+          return todo;
+        })
+      );
+    }
   };
 
-  const removeTodo = todo => {
-    const { id } = todo;
-    deleteTodo( id );
-    setFetching( true )
+  const removeTodo = async (todo) => {
+    const {id} = todo;
+    const res = await deleteTodo(id);
+    if (res?.success === true) {
+      setTodos((prev) => prev.filter((item) => item.id !== res.data));
+    }
   };
 
   const getTodos = async () => {
     try {
-      const res = await getATodo( limit );
-      if ( res ) {
-        setTodos( res.data );
+      const res = await getATodo(limit);
+      if (res) {
+        setTodos(res.data);
       }
-    } catch ( error ) {
-      console.error( "Error with message ", error.message );
+    } catch (error) {
+      console.error("Error with message ", error.message);
       throw error;
     }
   }
 
-  useEffect( () => {
+  useEffect(() => {
     getTodos();
-  }, [ fetching ] )
+  }, [])
   return (
     <div className='todo-list'>
-      <TodoForm addTodo={ addTodo } />
+      <TodoForm addTodo={addTodo} />
 
-      { todos && todos.length > 0 &&
-        todos.map( ( todo ) => (
+      {todos && todos.length > 0 &&
+        todos.map((todo) => (
           <Todo
-            key={ todo.id }
-            todo={ todo }
-            completeTodo={ completeTodo }
-            removeTodo={ removeTodo }
+            key={todo.id}
+            todo={todo}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
           />
-        ) ) }
+        ))}
     </div>
   )
 }

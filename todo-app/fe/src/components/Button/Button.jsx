@@ -1,15 +1,19 @@
-import './Button.css'
+import './Button.css';
 
-const Button = ( { onClick, value, text, className } ) => {
+const Button = ({onClick, value, text, className}) => {
 
   const handleClick = () => {
-    if ( onClick ) {
-      onClick( value );
+    if (onClick) {
+      onClick(value);
     }
   };
 
   return (
-    <button className={ `custom-btn ${ className }` } onClick={ () => handleClick() }>{ text }</button>
+    <button
+      className={`custom-btn ${className}`}
+      onClick={() => handleClick()}>
+      {text}
+    </button>
   );
 };
 
